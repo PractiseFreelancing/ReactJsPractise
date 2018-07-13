@@ -5,28 +5,19 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server -content-base src/ --inine --hot",
-    "build:prod": "webpack -p && cp src/index.html dist/index.html",
+    "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot",
+    "build:prod": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PractiseFreelancing/ReactJsPractise.git"
-  },
-  "keywords": [
-    "reactjs"
-  ],
-  "author": "MayankMittal",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PractiseFreelancing/ReactJsPractise/issues"
-  },
-  "homepage": "https://github.com/PractiseFreelancing/ReactJsPractise#readme",
   "dependencies": {
+    "babel": "^6.23.0",
+    "loader": "^2.1.1",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "webpack-cli": "^3.0.8"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",

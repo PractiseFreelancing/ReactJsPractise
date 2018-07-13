@@ -6,16 +6,18 @@ var SRC_DIR = path.resolve(__dirname, "src");
 
 var config = {
     entry: SRC_DIR + "/app/index.js",
+    mode: "none",
     output: {
         path : DIST_DIR + "/app",
         filename: "bundle.js",
-        publicpPath: "/app/"
+        publicPath: "/app/"
     },
-    modules: {
-        loaders: [
+    module: {
+        rules: [
             {
                 test: /\.js?/,
                 include: SRC_DIR,
+				exclude: /node_modules/,
                 loader: "babel-loader",
                 query: {
                     presets: ["react", "es2015", "stage-2"]
