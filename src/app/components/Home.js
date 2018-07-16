@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
+require("../functions/function");
 export class Home extends React.Component{
     render(){
         var content = "";
@@ -10,7 +10,28 @@ export class Home extends React.Component{
         }
 
         console.log("*****props*****",this.props);
-
+        function myFunc(){
+            alert("hello");
+            var fname = document.getElementById("fname").value;
+            var lname = document.getElementById("lname").value;
+            var email = document.getElementById("email").value;
+            var pwd = document.getElementById("pwd").value;
+        
+            var data = {
+                "first" : fname,
+                "last" : lname,
+                "mail" : email,
+                "pass":pwd
+            };
+        //    JQuery.post('http://localhost:2356/postData',data).
+        jQuery.ajax({
+            type: "POST",
+            url: 'http://localhost:2356/postData',
+            data: data,
+            success: success,
+            dataType: JSON
+          });
+        }
         /* for practise
         <p> Your name is {this.props.name} and your age is : {this.props.age} 
                 User Object user name is : {this.props.user.name}</p>
@@ -46,7 +67,7 @@ export class Home extends React.Component{
                         <input type="password" className="form-control" id="pwd" placeholder="Enter Password" required/>
                     </div>
                     
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary" onClick={(event) => myFunc()}>Submit</button>
                 </form>
 
             </div>
