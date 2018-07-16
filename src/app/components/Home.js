@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+
 export class Home extends React.Component{
     render(){
         var content = "";
@@ -9,20 +10,45 @@ export class Home extends React.Component{
         }
 
         console.log("*****props*****",this.props);
-        return(
-            <div>
-                <p> In a New Component.  </p>
-                <h1>{content}</h1>
-                <p> Your name is {this.props.name} and your age is  {this.props.age}</p>
-                <h2> User Object </h2><p> user name is : {this.props.user.name}</p>
+
+        /* for practise
+        <p> Your name is {this.props.name} and your age is : {this.props.age} 
+                User Object user name is : {this.props.user.name}</p>
                 <div>
-                    <h2> User Hobbies </h2>
+                     User Hobbies :
                     <ul>
                             {this.props.user.hobbies.map((hobby,i) => <li key={i}>{hobby}</li>)}
                     </ul>
                 </div>
                 <hr/>
-                {this.props.children}
+                {this.props.children}*/ 
+        return(
+            <div className="container">
+                <h1> Form :   </h1>
+                <form>
+                <div className="form-group">
+                        <label id="exampleInputEmail1">First Name</label>
+                        <input type="text" className="form-control" id="fname"  placeholder="Enter First Name" required/>
+                        
+                    </div>
+                    <div className="form-group">
+                        <label id="exampleInputPassword1">Last Name</label>
+                        <input type="text" className="form-control" id="lname" placeholder="Enter Last Name" required/>
+                    </div>
+
+                    <div className="form-group">
+                        <label id="exampleInputEmail1">Email address</label>
+                        <input type="email" className="form-control" id="email"  placeholder="Enter email" required/>
+                        
+                    </div>
+                    <div className="form-group">
+                        <label id="exampleInputPassword1">Password</label>
+                        <input type="password" className="form-control" id="pwd" placeholder="Enter Password" required/>
+                    </div>
+                    
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+
             </div>
         );
     }
