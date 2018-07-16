@@ -5,6 +5,10 @@ import { Header } from "./components/Header";
 import { Home } from "./components/Home";
 
 class FirstComponent extends React.Component{
+
+	onGreet(){
+		alert("Hello!");
+	}
 	render() {
 		var user = {
 			name : "Pulkit",
@@ -19,7 +23,7 @@ class FirstComponent extends React.Component{
 					</div>
 					<div className="row">
 						<div className="col-xs-10 col-xs-offset-1">
-							<Home name={"Mayank"} age={22} user={user}>
+							<Home name={"Mayank"} age={22} user={user} greet={this.onGreet}>
 								<p>This is a para in Home component</p>
 							</Home>
 						</div>

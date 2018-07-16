@@ -3,7 +3,7 @@ var router = require("./router");
 var app = express();
 
 app.use(require('./router'));
-var port = 2356;
+var port = 1212;
 var server = app.listen(port, function () {
 
     var host = server.address().address

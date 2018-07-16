@@ -1,16 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
+import $ from "jquery";
+import fetch from 'isomorphic-fetch';
 
 require("../functions/function");
 export class Home extends React.Component{
+
+    constructor(props){
+        super();
+        //this.age = props.age;
+        this.state={
+            age:props.age
+        }
+    }
+    /*myFunc(){
+        this.setState(
+            {
+                age:this.state.age+5
+            }
+
+        );
+        //this.age+=3;
+        //console.log("*****this.age*****",this.age);
+    }*/
     render(){
         var content = "";
         if(true){
                 content = "Hie!"
         }
-
+       
         console.log("*****props*****",this.props);
-        function myFunc(){
+       
+       /* function myFunc(){
             alert("hello");
             var fname = document.getElementById("fname").value;
             var lname = document.getElementById("lname").value;
@@ -23,18 +44,23 @@ export class Home extends React.Component{
                 "mail" : email,
                 "pass":pwd
             };
+        
         //    JQuery.post('http://localhost:2356/postData',data).
-        jQuery.ajax({
+        $.ajax({
             type: "POST",
-            url: 'http://localhost:2356/postData',
+            url: 'http://localhost:1212/postData',
             data: data,
-            success: success,
-            dataType: JSON
+            success: "success",
+            dataType: "JSON"
           });
-        }
-        /* for practise
+          $.post( "http://localhost:1212/postData", data)
+  .done(function( data ) {
+    alert( "Data Loaded: " , data );
+  });
+        }/*
+        for practise
         <p> Your name is {this.props.name} and your age is : {this.props.age} 
-                User Object user name is : {this.props.user.name}</p>
+            User Object user name is : {this.props.user.name}</p>
                 <div>
                      User Hobbies :
                     <ul>
@@ -45,6 +71,7 @@ export class Home extends React.Component{
                 {this.props.children}*/ 
         return(
             <div className="container">
+            <p> Your name is {this.props.name} and your age is : {this.state.age} </p>
                 <h1> Form :   </h1>
                 <form>
                 <div className="form-group">
@@ -69,6 +96,8 @@ export class Home extends React.Component{
                     
                     <button type="submit" className="btn btn-primary" onClick={(event) => myFunc()}>Submit</button>
                 </form>
+                <hr/>
+                <button className="btn btn-primary" onClick={this.props.greet}>Greet</button>
 
             </div>
         );

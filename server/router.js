@@ -7,7 +7,8 @@ router.get('/getData', (req, res, next) => {
 });
 
 router.post('/postData', (req, res, next) => {
-    console.log("*****rrreeqq  posttt***",req);
+    console.log("*****rrreeqq  posttt***",req.query.first);
+    console.log("*****rrreeqq  posttt***",req.first);
     res.send("postData Called");
 });
 
