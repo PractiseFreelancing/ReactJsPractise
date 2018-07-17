@@ -9,10 +9,10 @@ router.get('/getData', (req, res, next) => {
 router.post('/postData', (req, res, next) => {
    // console.log("*****rrreeqq ***",req);
    res.setHeader('Content-Type', 'application/json');
+    
+    console.log("*****rrreeqq ***",req);
     console.log("*****rrreeqq body***",req.body);
-    //console.log("*****rrreeqq body***",req.data);
-    
-    
+
     res.send("Abhi");
 
 });

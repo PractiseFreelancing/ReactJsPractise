@@ -37,16 +37,16 @@ export class Home extends React.Component{
             mode: 'no-cors',
             body: JSON.stringify(data),
             headers: {
-                //Accept: 'application/json',
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
-            credentials: 'same-origin'
+            credentials: 'same-origin',
         
         }).then(function(response) { 
-            console.log("response.status:",response);     //=> number 100–599
+            console.log("response.status:",JSON.stringify(response));     //=> number 100–599
             console.log("response.headers",response.headers);    //=> Headers
             //console.log("response.statusText:",response.statusText); //=> String
-            //=> Strin
+            //=> String
           
             return response.text()
           }, function(error) {
