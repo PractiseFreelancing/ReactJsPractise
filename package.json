@@ -5,18 +5,24 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot",
+    "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback",
     "build:prod": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel": "^6.23.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "http": "0.0.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.3.1",
     "loader": "^2.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "webpack-cli": "^3.0.8"
   },
   "devDependencies": {
