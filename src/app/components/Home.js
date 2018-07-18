@@ -19,39 +19,39 @@ export class Home extends React.Component{
         
     } 
      myFunc(){
-        alert("hello");
+        //alert("hello");
         var fname = document.getElementById("fname").value;
         var lname = document.getElementById("lname").value;
         var email = document.getElementById("email").value;
         var pwd = document.getElementById("pwd").value;
     
         var data = {
-            "first" : fname,
-            "last" : lname,
-            "mail" : email,
-            "pass":pwd
+            first : fname,
+            last : lname,
+            mail : email,
+            pass : pwd
         };
        
-        fetch('http://localhost:1212/postData', {
+        fetch('http://localhost:1212/api/postData', {
             method: 'POST',
             mode: 'no-cors',
             body: JSON.stringify(data),
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
+                //'Content-Type': 'application/json'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
             credentials: 'same-origin',
         
-        }).then(function(response) { 
-            console.log("response.status:",JSON.stringify(response));     //=> number 100–599
-            console.log("response.headers",response.headers);    //=> Headers
-            //console.log("response.statusText:",response.statusText); //=> String
-            //=> String
-          
-            return response.text()
-          }, function(error) {
-            error.message //=> String
-          })
+        }).then((response) => response.json())
+        .then((responseJson) => {
+            console.log(responseJson);
+          //return responseJson.movies;
+        })
+        .catch((error) => error)
+        .then((error) => {
+            console.log(error);
+        });
     }   
     /*myFunc(){
         this.setState(
