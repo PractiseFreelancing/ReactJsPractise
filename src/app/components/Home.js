@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import $ from "jquery";
 import fetch from 'isomorphic-fetch';
-import http from 'http';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export class Home extends React.Component{
 
@@ -16,8 +14,9 @@ export class Home extends React.Component{
     }
 
     componentWillMount(){
-        
+    
     } 
+    
      myFunc(){
         //alert("hello");
         var fname = document.getElementById("fname").value;
@@ -26,31 +25,22 @@ export class Home extends React.Component{
         var pwd = document.getElementById("pwd").value;
     
         var data = {
-            first : fname,
-            last : lname,
-            mail : email,
-            pass : pwd
+            "first" : fname,
+            "last" : lname,
+            "mail" : email,
+            "pass" : pwd
         };
        
-        fetch('http://localhost:1212/api/postData', {
+        fetch('http://localhost:1212/api/submitDetails', {
             method: 'POST',
-            mode: 'no-cors',
+            //mode: 'no-cors',
             body: JSON.stringify(data),
             headers: {
                 Accept: 'application/json',
                 //'Content-Type': 'application/json'
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            credentials: 'same-origin',
-        
-        }).then((response) => response.json())
-        .then((responseJson) => {
-            console.log(responseJson);
-          //return responseJson.movies;
-        })
-        .catch((error) => error)
-        .then((error) => {
-            console.log(error);
+            //credentials: 'same-origin'
         });
     }   
     /*myFunc(){
@@ -68,12 +58,7 @@ export class Home extends React.Component{
         if(true){
                 content = "Hie!"
         }
-       
-        console.log("*****props*****",this.props);
-       
-      
-        //var postUrl = 'http://localhost:1212/postData';
-        
+        //console.log("*****props*****",this.props);
         /*
         for practise
         <div>
@@ -111,10 +96,10 @@ export class Home extends React.Component{
                         <input type="password" className="form-control" id="pwd" placeholder="Enter Password" required/>
                     </div>
                     
-                    <button type="button" className="btn btn-primary" onClick={this.myFunc}>Submit</button>
+                    <Button type="button" className="btn btn-primary" onClick={this.myFunc}>Submit Details</Button>
                 </form>
                 <hr/>
-                <button className="btn btn-primary" onClick={this.props.greet}>Greet</button>
+                
 
             </div>
         );

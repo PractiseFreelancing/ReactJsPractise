@@ -1,23 +1,26 @@
 import React from "react";
 import { render } from "react-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
-import { Header } from "./components/Header";
+import { Description } from "./components/Description";
 import { Home } from "./components/Home";
+import { AllData } from "./components/AllData";
+import { DeleteUser } from "./components/DeleteUser";
+import { EditUser } from "./components/EditUser";
 
 
 class FirstComponent extends React.Component{
 
-	onGreet(){
+	/*onGreet(){
 		alert("Hello!");
-	}
+	}*/
 	render() {
 		var user = {
 			name : "Pulkit",
 			hobbies : ["cricket", "mobile"]
 		};
-		return(
-				<div className="container">
+		/** <div className="container">
 					<div className="row">
 						<div className="col-xs-10 col-xs-offset-1">
 							<Header/>
@@ -30,7 +33,37 @@ class FirstComponent extends React.Component{
 							</Home>
 						</div>
 					</div>
-				</div>
+				</div> */
+		return(
+			<Router>
+			<div>
+			  <ul>
+				<li>
+				  <Link to="/">Home</Link>
+				</li>
+				<li>
+				  <Link to="/addUser">Add User</Link>
+				</li>
+				<li>
+				  <Link to="/getAll">Get All Details</Link>
+				</li>
+				<li>
+				  <Link to="/delUser">Delete User Detail</Link>
+				</li>
+				<li>
+				  <Link to="/editUser">Edit Details</Link>
+				</li>
+			  </ul>
+		
+			  <hr />
+		
+			  <Route exact path="/" component={Description} />
+			  <Route path="/addUser" component={Home} />
+			  <Route path="/getAll" component={AllData} />
+			  <Route path="/delUser" component={DeleteUser} />
+			  <Route path="/editUser" component={EditUser} />
+			</div>
+		  </Router>
 		);
 	} 
 }

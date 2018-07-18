@@ -1,12 +1,12 @@
 import React from "react";
 
 
-export class User extends React.Component{
+export class AllData extends React.Component{
     render(){
         return(
               
                <div className="container">
-               <h1>User: </h1>
+               <h1>All Data </h1>
                </div> 
         );
     }
