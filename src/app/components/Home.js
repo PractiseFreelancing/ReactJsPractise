@@ -39,7 +39,7 @@ export class Home extends React.Component{
                 Accept: 'application/json',
                 //'Content-Type': 'application/json'
                 'Content-Type': 'application/x-www-form-urlencoded'
-            },
+            }
             //credentials: 'same-origin'
         });
     }   
@@ -48,7 +48,6 @@ export class Home extends React.Component{
             {
                 age:this.state.age+5
             }
-
         );
         //this.age+=3;
         //console.log("*****this.age*****",this.age);
@@ -96,7 +95,7 @@ export class Home extends React.Component{
                         <input type="password" className="form-control" id="pwd" placeholder="Enter Password" required/>
                     </div>
                     
-                    <Button type="button" className="btn btn-primary" onClick={this.myFunc}>Submit Details</Button>
+                    <button to="/addUser" type="button" className="btn btn-primary" onClick={this.myFunc}>Submit Details</button>
                 </form>
                 <hr/>
                 

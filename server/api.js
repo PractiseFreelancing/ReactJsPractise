@@ -4,19 +4,20 @@ const Details = require("./models/userData");
 const mongoose = require("mongoose");
 
 router.get('/getData', (req, res, next) => {
-   console.log("get Req ", req.params.getData);
-   const id =  req.params.getData;
-    Details.findById(id)
-    .exec()
-    .then(doc => {
-        console.log("getting from Database",doc);
-        res.status(200).json(doc);
-    })
-    .catch(err => {
-        console.log("error in gettiing",err);
-        res.status(500).json({error:err});
+  
+    Details.find({}).exec((err,result) =>
+    {
+        if(err){
+        console.log("error get", err);
+            return next(err);
+        }
+        else{
+            console.log("result get", result);
+            res.status(200).json(result);
+        }
+        
     });
-    res.send("getData Called");
+    //res.send("getData Called");
 });
 
 router.post('/submitDetails', (req, res, next) => {
@@ -56,13 +57,38 @@ router.post('/submitDetails', (req, res, next) => {
 
 
 router.delete('/:deleteData', (req, res, next) => {
-    res.send("deleteData Called");
+    /* console.log("get Req ", req.params.getData);
+   const id =  req.params.getData;
+    Details.findById(id)
+    .exec()
+    .then(doc => {
+        console.log("getting from Database",doc);
+        res.status(200).json(doc);
+    })
+    .catch(err => {
+        console.log("error in gettiing",err);
+        res.status(500).json({error:err});
+    });*/
 });
 
 router.put('/:putData', (req, res, next) => {
     res.send("putData Called");
 });
 
+router.get('/:ID', (req, res) => {
+    
+    const id =  req.params.ID;
+     Details.findById(id)
+     .exec()
+     .then(doc => {
+         console.log("getting from Database",doc);
+         res.status(200).json(doc);
+     })
+     .catch(err => {
+         console.log("error in gettiing",err);
+         res.status(500).json({error:err});
+     });
+  });
 
 
 module.exports = router;
