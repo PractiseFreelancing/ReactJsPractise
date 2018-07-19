@@ -16,6 +16,7 @@ export class Home extends React.Component{
     componentWillMount(){
     
     } 
+   
     
      myFunc(){
         //alert("hello");
@@ -42,6 +43,11 @@ export class Home extends React.Component{
             }
             //credentials: 'same-origin'
         });
+        alert("DETAILS SUBMITTED SUCCESSFULLY");
+        document.getElementById("fname").value = '';
+        document.getElementById("lname").value = '';
+        document.getElementById("email").value = '';
+        document.getElementById("pwd").value = '';
     }   
     /*myFunc(){
         this.setState(

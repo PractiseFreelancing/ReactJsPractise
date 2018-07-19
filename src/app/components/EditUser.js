@@ -1,15 +1,19 @@
 import React from "react";
-
+import fetch from 'isomorphic-fetch';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export class EditUser extends React.Component{
     constructor(props) {
-        super(props);
-        this.state = {editData: []};
+        super();
+        this.state = {editData: {}};
       }
     editData(){
-        alert("hello");
+        //alert("hello");
+        
         var userInfo = document.getElementById("editUser").value;
-        fetch('http://localhost:1212/api/'+userInfo, {
+        alert(userInfo);
+        var url = 'http://localhost:1212/api/'+userInfo+'';
+        fetch(url, {
             method: 'GET',
             //mode: 'no-cors',
             
@@ -21,13 +25,24 @@ export class EditUser extends React.Component{
             //credentials: 'same-origin'
         })
       .then(data => data.json())
-      .then((data) => { 
-        console.log("all data",data);  
-        this.setState({ editData: data }) });
-        alert(this.state.editData)
+      .then((editData) => { 
+        //const userdata = (data).map((data,i) => <li key={i}>{data}</li>);
+        console.log("all data",editData);  
+        this.setState({ editData }) 
+
+    });
+  // console.log("*******",this.state.editData);
+        //alert(this.state.editData)
     }
-     
+     componentDidUpdate(){
+        
+        const show = this.state.editData.map((data,i) => <li key={i}>{data}</li>);
+    return {isVisible : true} 
+    }
     render(){
+        //var editData ={};
+        var isVisible = false;
+       
         return(
               
             <div className="container">
@@ -36,10 +51,10 @@ export class EditUser extends React.Component{
                 <div className="form-group">
             <input type="text" id="editUser" placeholder="Enter User id" required/>
             </div>
-            <button className="btn btn-primary" onClick={this.editData}>Edit Details</button>
+            <button to="/editUser" type="button" className="btn btn-primary" onClick={this.editData.bind(this)}>Edit Details</button>
             </form>
             <ul>
-            {this.state.editData.map((data,i) => <li key={i}>{JSON.stringify(data)}</li>)}
+            {isVisible ? show : ''}
                     </ul>
             </div> 
         );

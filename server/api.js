@@ -57,25 +57,24 @@ router.post('/submitDetails', (req, res, next) => {
 
 
 router.delete('/:deleteData', (req, res, next) => {
-    /* console.log("get Req ", req.params.getData);
-   const id =  req.params.getData;
+    const id =  req.params.deleteData;
     Details.findById(id)
-    .exec()
+    .remove()
     .then(doc => {
-        console.log("getting from Database",doc);
+        console.log("gremoving from Database",doc);
         res.status(200).json(doc);
     })
     .catch(err => {
-        console.log("error in gettiing",err);
+        console.log("error in removing",err);
         res.status(500).json({error:err});
-    });*/
+    });
 });
 
 router.put('/:putData', (req, res, next) => {
     res.send("putData Called");
 });
 
-router.get('/:ID', (req, res) => {
+router.get('/:ID', (req, res, next) => {
     
     const id =  req.params.ID;
      Details.findById(id)
