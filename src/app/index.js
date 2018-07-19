@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 import { Description } from "./components/Description";
-import { Home } from "./components/Home";
+import { AddUser } from "./components/AddUser";
 import { AllData } from "./components/AllData";
 import { DeleteUser } from "./components/DeleteUser";
 import { EditUser } from "./components/EditUser";
+import { Header } from "./components/Header";
+import { Home } from "./components/Home";
 
 
 class FirstComponent extends React.Component{
@@ -37,28 +39,12 @@ class FirstComponent extends React.Component{
 		return(
 			<Router>
 			<div>
-			  <ul>
-				<li>
-				  <Link to="/">Home</Link>
-				</li>
-				<li>
-				  <Link to="/addUser">Add User</Link>
-				</li>
-				<li>
-				  <Link to="/getAll">Get All Details</Link>
-				</li>
-				<li>
-				  <Link to="/delUser">Delete User Detail</Link>
-				</li>
-				<li>
-				  <Link to="/editUser">Edit Details</Link>
-				</li>
-			  </ul>
+			<Header/>
 		
 			  <hr />
-		
-			  <Route exact path="/" component={Description} />
-			  <Route path="/addUser" component={Home} />
+				<Route exact path="/" component={Home} />
+			  <Route path="/description" component={Description} />
+			  <Route path="/addUser" component={AddUser} />
 			  <Route path="/getAll" component={AllData} />
 			  <Route path="/delUser" component={DeleteUser} />
 			  <Route path="/editUser" component={EditUser} />
