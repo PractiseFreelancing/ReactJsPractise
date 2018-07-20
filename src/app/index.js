@@ -38,11 +38,15 @@ class FirstComponent extends React.Component{
 				</div> */
 		return(
 			<Router>
-			<div>
+			<div className="container">
+			<br/>
 			<Header/>
 		
 			  <hr />
-				<Route exact path="/" component={Home} />
+				<div className="container">
+				Created By : MM
+				</div>
+				<Route path="/home" component={Home} />
 			  <Route path="/description" component={Description} />
 			  <Route path="/addUser" component={AddUser} />
 			  <Route path="/getAll" component={AllData} />

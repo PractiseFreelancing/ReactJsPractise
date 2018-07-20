@@ -7,11 +7,11 @@ export class Header extends React.Component{
     render(){
        
         return(
-              <div>
-                  <table align="center">
+              <div className="container" align="center">
+                  <table>
                   <tbody>
                       <tr>
-                    <td><Link to="/" className="btn btn-primary">Home</Link></td>   
+                    <td><Link to="/home" className="btn btn-primary">Home</Link></td>   
                     <td> <Link to="/description" className="btn btn-primary">Description</Link></td>  
                     <td><Link to="/addUser" className="btn btn-primary">Add User</Link></td>  
                     <td><Link to="/getAll" className="btn btn-primary">Get All Details</Link></td>  

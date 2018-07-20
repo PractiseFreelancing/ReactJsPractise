@@ -1,6 +1,9 @@
 import React from "react";
 import fetch from 'isomorphic-fetch';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import nodemailer from 'nodemailer';
+
+//var nodemailer = require('nodemailer');
 
 
 export class AllData extends React.Component{

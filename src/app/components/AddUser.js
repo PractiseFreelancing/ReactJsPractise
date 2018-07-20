@@ -9,17 +9,84 @@ export class AddUser extends React.Component{
         super();
         //this.age = props.age;
         this.state={
-            age:props.age
+            age:props.age,
+            fields: {},
+           errors: {}
         }
     }
 
-    componentWillMount(){
-    
-    } 
+   /*********************************FORM VALIDATION********************************************* */
+   
+    handleValidation(){
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        //Name
+        if(!fields["name"]){
+           formIsValid = false;
+           errors["name"] = "Cannot be empty";
+        }
+
+        if(typeof fields["name"] !== "undefined"){
+           if(!fields["name"].match(/^[a-zA-Z]+$/)){
+              formIsValid = false;
+              errors["name"] = "Only letters";
+           }        
+        }
+//lname
+         if(!fields["lname"]){
+           formIsValid = false;
+           errors["lname"] = "Cannot be empty";
+        }
+
+        if(typeof fields["lname"] !== "undefined"){
+           if(!fields["lname"].match(/^[a-zA-Z]+$/)){
+              formIsValid = false;
+              errors["lname"] = "Only letters";
+           }        
+        }
+
+        //Email
+      if(!fields["email"]){
+           formIsValid = false;
+           errors["email"] = "Cannot be empty";
+        }
+
+        if(typeof fields["email"] !== "undefined"){
+           let lastAtPos = fields["email"].lastIndexOf('@');
+           let lastDotPos = fields["email"].lastIndexOf('.');
+
+           if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
+              formIsValid = false;
+              errors["email"] = "Email is not valid";
+            }
+       }  
+//pwd
+if(!fields["pwd"]){
+           formIsValid = false;
+           errors["pwd"] = "Cannot be empty";
+        }
+       this.setState({errors: errors});
+       return formIsValid;
+   }
+
+
+    handleChange(field, e){         
+        let fields = this.state.fields;
+        fields[field] = e.target.value;        
+        this.setState({fields});
+    }
+
+   
+   
+  /********************************************************************************************************************** */ 
    
     
-     myFunc(){
+     myFunc(e){
+         e.preventDefault();
         //alert("hello");
+        if(this.handleValidation()){
         var fname = document.getElementById("fname").value;
         var lname = document.getElementById("lname").value;
         var email = document.getElementById("email").value;
@@ -48,6 +115,7 @@ export class AddUser extends React.Component{
         document.getElementById("lname").value = '';
         document.getElementById("email").value = '';
         document.getElementById("pwd").value = '';
+        }
     }   
     /*myFunc(){
         this.setState(
@@ -79,29 +147,31 @@ export class AddUser extends React.Component{
         return(
             <div className="container">
             
-                <h1> Form :   </h1>
+                <h1 align="center">Add your Details</h1>
                 <form>
                 <div className="form-group">
-                        <label id="exampleInputEmail1">First Name</label>
-                        <input type="text" className="form-control" id="fname"  placeholder="Enter First Name" required/>
-                        
+                        <label id="firstName">First Name</label>
+                        <input type="text" className="form-control" id="fname" onChange={this.handleChange.bind(this, "name")} placeholder="Enter First Name" required/>
+                        <span style={{color: "red"}}>{this.state.errors["name"]}</span>
                     </div>
                     <div className="form-group">
-                        <label id="exampleInputPassword1">Last Name</label>
-                        <input type="text" className="form-control" id="lname" placeholder="Enter Last Name" required/>
+                        <label id="lastName">Last Name</label>
+                        <input type="text" className="form-control" id="lname" onChange={this.handleChange.bind(this, "lname")} placeholder="Enter Last Name" required/>
+                   <span style={{color: "red"}}>{this.state.errors["lname"]}</span>
                     </div>
 
                     <div className="form-group">
-                        <label id="exampleInputEmail1">Email address</label>
-                        <input type="email" className="form-control" id="email"  placeholder="Enter email" required/>
-                        
+                        <label id="emaildata">Email address</label>
+                        <input type="email" className="form-control" id="email" onChange={this.handleChange.bind(this, "email")} placeholder="Enter email" required/>
+                        <span style={{color: "red"}}>{this.state.errors["email"]}</span>
                     </div>
                     <div className="form-group">
-                        <label id="exampleInputPassword1">Password</label>
-                        <input type="password" className="form-control" id="pwd" placeholder="Enter Password" required/>
+                        <label id="password">Password</label>
+                        <input type="password" className="form-control" id="pwd" onChange={this.handleChange.bind(this, "pwd")} placeholder="Enter Password" required/>
+                    <span style={{color: "red"}}>{this.state.errors["pwd"]}</span>
                     </div>
                     
-                    <button to="/addUser" type="button" className="btn btn-primary" onClick={this.myFunc}>Submit Details</button>
+                    <button to="/addUser" type="button" className="btn btn-primary" onClick={this.myFunc.bind(this)}>Submit Details</button>
                 </form>
                 <hr/>
                 
