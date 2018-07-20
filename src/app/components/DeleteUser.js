@@ -31,7 +31,7 @@ export class DeleteUser extends React.Component{
     render(){
         return(
               
-               <div className="container">
+               <div className="container" align="center">
                <h1>Delete User </h1>
                <form>
                 <div className="form-group">

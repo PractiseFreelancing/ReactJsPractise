@@ -48,7 +48,7 @@ export class EditUser extends React.Component{
        
         return(
               
-            <div className="container">
+            <div className="container" align="center">
             <h1>Edit User </h1>
             <form>
                 <div className="form-group">
