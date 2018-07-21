@@ -8,7 +8,12 @@ export class Home extends React.Component{
        
         return(
               <div className="container" align="center">
-                 <h1>Basic <b>Reactjs</b> Application with Restful Api.</h1>
+                 <h1>Basic 
+                     <b><span className="badge badge-light">Reactjs</span></b> 
+                    Application with 
+                    <b><span className="badge badge-light">Restful</span></b>
+                     Api.
+                </h1>
               </div>
         );
     }

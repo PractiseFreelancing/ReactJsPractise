@@ -13,14 +13,13 @@ export class AllData extends React.Component{
         this.state = {
             allData: [],
             editUpdateButton : "Edit Details",
-            deleteButton : "Delete Details",
-            flag : true
+            deleteButton : "Delete Details"
         };
       }
     componentWillMount(){
         this.fetchData();
     }
-
+ 
     fetchData(){
         fetch('http://localhost:1212/api/getData', {
             method: 'GET',
@@ -36,14 +35,6 @@ export class AllData extends React.Component{
         this.setState({ allData: data }) });
     }
     deleteDetail(id){
-        //var id = document.getElementsByTagName("tr")[0];
-        if(this.state.flag == true){
-            this.setState({ flag: false });
-        }else{
-            this.setState({ flag: true });
-        }
-        
-        
         console.log("tablle data",id);
         var url = 'http://localhost:1212/api/'+id+'';
         fetch(url, {
@@ -62,6 +53,11 @@ export class AllData extends React.Component{
         //const userdata = (data).map((data,i) => <li key={i}>{data}</li>);
         //console.log("all data",editData);  
         console.log("deleted");
+       /* if(this.state.flag == true){
+            this.setState({ flag: false });
+        }else{
+            this.setState({ flag: true });
+        }*/
         this.fetchData();
       });
       
@@ -90,7 +86,7 @@ export class AllData extends React.Component{
         });
         }else{
             console.log("in else of button",this.state.editUpdateButton);
-           
+          
             var fname = document.getElementById(allData.fname).value;
             var lname = document.getElementById(allData.lname).value;
             var email = document.getElementById(allData.email).value;
@@ -116,8 +112,6 @@ export class AllData extends React.Component{
                 document.getElementById(allData.fname).readOnly = true;
             document.getElementById(allData.lname).readOnly = true;
             document.getElementById(allData.email).readOnly = true;
-
-
         }
     }
  
@@ -125,12 +119,12 @@ export class AllData extends React.Component{
         return this.state.allData.map((allData,i) => {
             return (
                 <tr key={i} id={allData._id}>
-                    <td>{allData._id}</td>
-                    <td><input type="text" id={allData.fname}  defaultValue={allData.fname}  readOnly={true}/></td>
-                    <td><input type="text" id={allData.lname}  defaultValue={allData.lname} readOnly={true}/></td>
-                    <td><input type="text" id={allData.email}  defaultValue={allData.email} readOnly={true}/></td>
-                    <td><button to="/getAll" id={i} type="button" className="btn btn-primary" onClick={this.editUpdateDetail.bind(this,allData,i)}>{this.state.editUpdateButton}</button></td>
-                    <td><Link to="/getAll" type="button" className="btn btn-primary" onClick={this.deleteDetail.bind(this,allData._id)}>{this.state.deleteButton}</Link></td>
+                    {/*<td>{allData._id}</td>*/}
+                    <td><input type="text" id={allData.fname} defaultValue={allData.fname}  readOnly={true}/></td>
+                    <td><input type="text" id={allData.lname} defaultValue={allData.lname} readOnly={true}/></td>
+                    <td><input type="text" id={allData.email} defaultValue={allData.email} readOnly={true}/></td>
+                    <td><button to="/getAll" id={i} type="button" className="btn btn-outline-primary" onClick={this.editUpdateDetail.bind(this,allData,i)}>{this.state.editUpdateButton}</button></td>
+                    <td><Link to="/getAll" type="button" className="btn btn-primary" disabled={true} onClick={this.deleteDetail.bind(this,allData._id)}>{this.state.deleteButton}</Link></td>
                 </tr>
             );
         })
@@ -148,13 +142,15 @@ export class AllData extends React.Component{
                <h1 align= "center">All Data </h1>
               <br />
                 <br />
-                <table className="table">
+                <table className="table p-3 mb-2 bg-light text-dark">
                     <thead>
                         <tr key={this.state.allData._id}>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
+                            {/*<th>ID</th>*/}
+                            <th className="text-primary">Name</th>
+                            <th className="text-primary">Last Name</th>
+                            <th className="text-primary">Email</th>
+                            <th className="text-primary">Edit/Update</th>
+                            <th className="text-primary">Delete</th>
                         </tr>
                     </thead>
 

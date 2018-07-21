@@ -85,7 +85,6 @@ if(!fields["pwd"]){
     
      myFunc(e){
          e.preventDefault();
-        //alert("hello");
         if(this.handleValidation()){
         var fname = document.getElementById("fname").value;
         var lname = document.getElementById("lname").value;
@@ -148,34 +147,32 @@ if(!fields["pwd"]){
             <div className="container">
             
                 <h1 align="center">Add your Details</h1>
-                <form>
+                <form className="table p-3 mb-2 bg-light text-dark">
                 <div className="form-group">
-                        <label id="firstName">First Name</label>
+                        <label id="firstName" className="text-primary">First Name</label>
                         <input type="text" className="form-control" id="fname" onChange={this.handleChange.bind(this, "name")} placeholder="Enter First Name" required/>
                         <span style={{color: "red"}}>{this.state.errors["name"]}</span>
                     </div>
                     <div className="form-group">
-                        <label id="lastName">Last Name</label>
+                        <label id="lastName" className="text-primary">Last Name</label>
                         <input type="text" className="form-control" id="lname" onChange={this.handleChange.bind(this, "lname")} placeholder="Enter Last Name" required/>
                    <span style={{color: "red"}}>{this.state.errors["lname"]}</span>
                     </div>
 
                     <div className="form-group">
-                        <label id="emaildata">Email address</label>
+                        <label id="emaildata" className="text-primary">Email address</label>
                         <input type="email" className="form-control" id="email" onChange={this.handleChange.bind(this, "email")} placeholder="Enter email" required/>
                         <span style={{color: "red"}}>{this.state.errors["email"]}</span>
                     </div>
                     <div className="form-group">
-                        <label id="password">Password</label>
+                        <label id="password" className="text-primary">Password</label>
                         <input type="password" className="form-control" id="pwd" onChange={this.handleChange.bind(this, "pwd")} placeholder="Enter Password" required/>
                     <span style={{color: "red"}}>{this.state.errors["pwd"]}</span>
                     </div>
                     
                     <button to="/addUser" type="button" className="btn btn-primary" onClick={this.myFunc.bind(this)}>Submit Details</button>
                 </form>
-                <hr/>
                 
-
             </div>
         );
     }

@@ -36,24 +36,34 @@ class FirstComponent extends React.Component{
 						</div>
 					</div>
 				</div> */
+				
 		return(
 			<Router>
 			<div className="container">
 			<br/>
 			<Header/>
-		
-			  <hr />
-				<div className="container">
-				Created By : MM
+			<br/>
+			<div className="progress" style={{height: "1px"}} >
+				<div className="progress-bar " role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}>
 				</div>
-				<Route path="/home" component={Home} />
-			  <Route path="/description" component={Description} />
-			  <Route path="/addUser" component={AddUser} />
-			  <Route path="/getAll" component={AllData} />
-			  <Route path="/delUser" component={DeleteUser} />
-			  <Route path="/editUser" component={EditUser} />
 			</div>
-		  </Router>
+			<br/>
+			<div className="progress">
+				<div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}>
+				<marquee><b>Created By : MM</b></marquee>
+				</div>
+			</div>
+				<br/>
+				<div>
+				<Route path="/home" component={Home} />
+				<Route path="/description" component={Description} />
+				<Route path="/addUser" component={AddUser} />
+				<Route path="/getAll" component={AllData} />
+				<Route path="/delUser" component={DeleteUser} />
+				<Route path="/editUser" component={EditUser} />
+				</div>
+				</div>
+			</Router>
 		);
 	} 
 }
