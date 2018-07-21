@@ -57,28 +57,52 @@ router.post('/submitDetails', (req, res, next) => {
 
 
 router.delete('/:deleteData', (req, res, next) => {
-    /* console.log("get Req ", req.params.getData);
-   const id =  req.params.getData;
-    Details.findById(id)
-    .exec()
+    const id =  req.params.deleteData;
+    Details.findById({_id:id})
+    .remove()
     .then(doc => {
-        console.log("getting from Database",doc);
+        console.log("gremoving from Database",doc);
         res.status(200).json(doc);
     })
     .catch(err => {
-        console.log("error in gettiing",err);
+        console.log("error in removing",err);
         res.status(500).json({error:err});
-    });*/
+    });
 });
 
-router.put('/:putData', (req, res, next) => {
-    res.send("putData Called");
+router.put('/:updateData', (req, res, next) => {
+    req.body = JSON.parse(Object.keys(req.body)[0]);
+    console.log("next req", req.body);
+    const id =  req.params.updateData;
+    const updateDetails = {
+        fname : req.body.first,
+           lname : req.body.last,
+           email : req.body.mail
+    }
+    /*const updateDetails = {};
+    for(const details of req.body){
+        updateDetails[details.propName] = details.value;
+    }
+    console.log("update details",updateDetails);*/
+    Details.update({_id: id}, {$set:updateDetails})
+    .exec()
+    .then(result => {
+        console.log("result", result);
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        console.log("error in updating", err);
+        res.status(500).json({
+            error : err
+        });
+    });
+
 });
 
-router.get('/:ID', (req, res) => {
+router.get('/:ID', (req, res, next) => {
     
     const id =  req.params.ID;
-     Details.findById(id)
+     Details.findById({_id: id})
      .exec()
      .then(doc => {
          console.log("getting from Database",doc);

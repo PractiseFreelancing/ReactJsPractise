@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 import { Description } from "./components/Description";
-import { Home } from "./components/Home";
+import { AddUser } from "./components/AddUser";
 import { AllData } from "./components/AllData";
 import { DeleteUser } from "./components/DeleteUser";
 import { EditUser } from "./components/EditUser";
+import { Header } from "./components/Header";
+import { Home } from "./components/Home";
 
 
 class FirstComponent extends React.Component{
@@ -34,36 +36,34 @@ class FirstComponent extends React.Component{
 						</div>
 					</div>
 				</div> */
+				
 		return(
 			<Router>
-			<div>
-			  <ul>
-				<li>
-				  <Link to="/">Home</Link>
-				</li>
-				<li>
-				  <Link to="/addUser">Add User</Link>
-				</li>
-				<li>
-				  <Link to="/getAll">Get All Details</Link>
-				</li>
-				<li>
-				  <Link to="/delUser">Delete User Detail</Link>
-				</li>
-				<li>
-				  <Link to="/editUser">Edit Details</Link>
-				</li>
-			  </ul>
-		
-			  <hr />
-		
-			  <Route exact path="/" component={Description} />
-			  <Route path="/addUser" component={Home} />
-			  <Route path="/getAll" component={AllData} />
-			  <Route path="/delUser" component={DeleteUser} />
-			  <Route path="/editUser" component={EditUser} />
+			<div className="container">
+			<br/>
+			<Header/>
+			<br/>
+			<div className="progress" style={{height: "1px"}} >
+				<div className="progress-bar " role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}>
+				</div>
 			</div>
-		  </Router>
+			<br/>
+			<div className="progress">
+				<div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}>
+				<marquee><b>Created By : MM</b></marquee>
+				</div>
+			</div>
+				<br/>
+				<div>
+				<Route path="/home" component={Home} />
+				<Route path="/description" component={Description} />
+				<Route path="/addUser" component={AddUser} />
+				<Route path="/getAll" component={AllData} />
+				<Route path="/delUser" component={DeleteUser} />
+				<Route path="/editUser" component={EditUser} />
+				</div>
+				</div>
+			</Router>
 		);
 	} 
 }

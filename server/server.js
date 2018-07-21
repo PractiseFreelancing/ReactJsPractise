@@ -16,7 +16,7 @@ mongoose.connect('mongodb+srv://er-mm:*mayank1995*@mmcluster-bmmj1.mongodb.net/t
 //useMongoClient : true
 useNewUrlParser: true
 });
-
+//mongoose.connect('mongodb://localhost:27017');
 
 app.use(express.json());
 app.use(cors());
