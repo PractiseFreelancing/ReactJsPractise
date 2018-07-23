@@ -150,7 +150,7 @@ if(!fields["pwd"]){
                 <form className="table p-3 mb-2 bg-light text-dark">
                 <div className="form-group">
                         <label id="firstName" className="text-primary">First Name</label>
-                        <input type="text" className="form-control" id="fname" onChange={this.handleChange.bind(this, "name")} placeholder="Enter First Name" required/>
+                        <input type="text" className="form-control" id="fname" onChange={this.handleChange.bind(this, "name")} autoFocus placeholder="Enter First Name" required/>
                         <span style={{color: "red"}}>{this.state.errors["name"]}</span>
                     </div>
                     <div className="form-group">
