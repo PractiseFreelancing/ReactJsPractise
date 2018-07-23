@@ -13,7 +13,8 @@ export class AllData extends React.Component{
         this.state = {
             allData: [],
             editUpdateButton : "Edit Details",
-            deleteButton : "Delete Details"
+            deleteButton : "Delete Details",
+            flag : true
         };
       }
     componentWillMount(){
@@ -48,22 +49,28 @@ export class AllData extends React.Component{
             }
             //credentials: 'same-origin'
         })
-      .then(data => data.json())
-      .then((editData) => { 
+      .then(data => {
+        data.json();
+        this.setState({ flag: !this.state.flag });
+        
+            this.fetchData();
+       
+        
+        
+      /*.then((editData) => { 
         //const userdata = (data).map((data,i) => <li key={i}>{data}</li>);
         //console.log("all data",editData);  
         console.log("deleted");
-       /* if(this.state.flag == true){
-            this.setState({ flag: false });
-        }else{
-            this.setState({ flag: true });
-        }*/
-        this.fetchData();
+     
+            this.setState({ flag: !this.state.flag });
+        */
+        
       });
       
     }  
     editUpdateDetail(allData,id){
         if(document.getElementById(id).textContent === "Edit Details"){
+            document.getElementById("delButton"+id).disabled = true;
            document.getElementById(id).textContent = "Update Details";
            this.state.editUpdateButton = "Update Details";
            console.log("button ", this.state.editUpdateButton);
@@ -86,7 +93,7 @@ export class AllData extends React.Component{
         });
         }else{
             console.log("in else of button",this.state.editUpdateButton);
-          
+            document.getElementById("delButton"+id).disabled = false;
             var fname = document.getElementById(allData.fname).value;
             var lname = document.getElementById(allData.lname).value;
             var email = document.getElementById(allData.email).value;
@@ -124,7 +131,7 @@ export class AllData extends React.Component{
                     <td><input type="text" id={allData.lname} defaultValue={allData.lname} readOnly={true}/></td>
                     <td><input type="text" id={allData.email} defaultValue={allData.email} readOnly={true}/></td>
                     <td><button to="/getAll" id={i} type="button" className="btn btn-outline-primary" onClick={this.editUpdateDetail.bind(this,allData,i)}>{this.state.editUpdateButton}</button></td>
-                    <td><Link to="/getAll" type="button" className="btn btn-primary" disabled={true} onClick={this.deleteDetail.bind(this,allData._id)}>{this.state.deleteButton}</Link></td>
+                    <td><button to="/getAll" id={"delButton"+i} type="button" className="btn btn-primary" disabled={false} onClick={this.deleteDetail.bind(this,allData._id)}>{this.state.deleteButton}</button></td>
                 </tr>
             );
         })

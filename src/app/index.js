@@ -11,6 +11,7 @@ import { EditUser } from "./components/EditUser";
 import { Header } from "./components/Header";
 import { Home } from "./components/Home";
 
+import store from "./store";
 
 class FirstComponent extends React.Component{
 
@@ -47,10 +48,9 @@ class FirstComponent extends React.Component{
 				<div className="progress-bar " role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}>
 				</div>
 			</div>
-			<br/>
+			<div align="center"><h6>Created By : MM</h6></div>
 			<div className="progress">
 				<div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{width: "100%"}}>
-				<marquee><b>Created By : MM</b></marquee>
 				</div>
 			</div>
 				<br/>
@@ -69,3 +69,102 @@ class FirstComponent extends React.Component{
 }
 
 render(<FirstComponent/>, window.document.getElementById("app"));
+
+//************************REDUX************* */
+// import { createStore,combineReducers,applyMiddleware } from "redux";
+// import {createLogger} from "redux-logger";
+
+// //creating reducer with taking actions
+// const mathReducer = (state = {
+// 	result : 1,
+// 	lastValues : []
+// }, action) => {
+// 	switch (action.type){
+// 		case "ADD":
+// 		//state.result = state.result + action.payload;
+// 		state = {
+// 			...state,
+// 			result : state.result + action.payload,
+// 			lastValues:[...state.lastValues,action.payload]
+// 		};
+// 		//its also immmutablestate.lastValues.push(action.payload);
+// 		break;
+// 		case "SUBTRACT":
+// 		//state = state - action.payload;
+// 		//immutable way or using state
+// 		state = {
+// 			...state,
+// 			result : state.result - action.payload,
+// 			lastValues:[...state.lastValues,action.payload]
+// 		};
+// 		break;
+// 	}
+// 	return state;
+// };
+// const userReducer = (state = {
+// 	name : "MM",
+// 	age : 22
+// }, action) => {
+// 	switch (action.type){
+// 		case "NAME":
+// 		//state.result = state.result + action.payload;
+// 		state = {
+// 			...state,
+// 			name : action.payload
+// 		};
+// 		//its also immmutablestate.lastValues.push(action.payload);
+// 		break;
+// 		case "AGE":
+// 		//state = state - action.payload;
+// 		//immutable way or using state
+// 		state = {
+// 			...state,
+// 			age : action.payload
+// 		};
+// 		break;
+// 	}
+// 	return state;
+// };
+//creating simple store
+//const store = createStore(reducer,1);
+
+//middleware
+// const myLogger = (store) => (next) => (action) => {
+// 	console.log("Logged Action : ", action);
+// 	next(action);
+// }
+//creating store with state object
+// const store = createStore(
+// 	combineReducers({mathReducer,userReducer}),
+// 	{},
+// 	applyMiddleware(myLogger,createLogger())
+// 	);
+
+
+// //this will handle by reactjs lateron
+// store.subscribe(() => {
+// 	console.log("updated store : ", store.getState());
+// }); 
+
+//dispatching actions
+store.dispatch({
+	type:"ADD",
+	payload:10
+});
+store.dispatch({
+	type:"ADD",
+	payload:20
+});
+store.dispatch({
+	type:"SUBTRACT",
+	payload:10
+});
+store.dispatch({
+	type:"NAME",
+	payload:"MAYANK"
+});
+store.dispatch({
+	type:"AGE",
+	payload:25
+});
+
